@@ -27,25 +27,30 @@
 			crossorigin="anonymous"></script>
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/style.css" />
+		<!-- <link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" /> -->
 		<!-- JS -->
 		<script src="src/main.js" defer></script>
 	</head>
 	<body>
 		<!-- header -->
-		<header>
-			<div>
-				<img src="images/profile.png" alt="logo" />
+		<header class="header">
+			<div class="header__logo">
+				<img class="header__logo__img" src="images/profile.png" alt="logo" />
 
 				<h1><a href="#">Ethan</a></h1>
 			</div>
 			<nav>
-				<ul>
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#skills">Skills</a></li>
-					<li><a href="#work">My Work</a></li>
-					<li><a href="#testimonial">Testimonial</a></li>
-					<li><a href="#contact">Contact</a></li>
+				<ul class="header__menu">
+					<li><a class="header__menu__item active" href="#home">Home</a></li>
+					<li><a class="header__menu__item" href="#about">About</a></li>
+					<li><a class="header__menu__item" href="#skills">Skills</a></li>
+					<li><a class="header__menu__item" href="#work">My Work</a></li>
+					<li>
+						<a class="header__menu__item" href="#testimonial">Testimonial</a>
+					</li>
+					<li><a class="header__menu__item" href="#contact">Contact</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -55,17 +60,26 @@
 		<main>
 			<!-- Home  -->
 
-			<section id="home">
-				<img src="images/profile.png" alt="Ethan의 프로필 사진" />
-				<h2>Hello I&#39;m Indi Hacker, Ethan</h2>
-				<p>A Firmware and Software Engineer residing in Chungdam, Seoul.</p>
-				<div><a href="#contact">Contact Me</a></div>
+			<section id="home" class="section">
+				<img
+					class="home__img"
+					src="images/profile.png"
+					alt="Ethan의 프로필 사진" />
+				<h2 class="home__title">
+					Hello <br />
+					I&#39;m <strong class="home__title--strong">Indi Hacker</strong>,
+					Ethan
+				</h2>
+				<p class="home__description">
+					A Firmware and Software Engineer residing in Chungdam, Seoul.
+				</p>
+				<a class="home__contact" href="#contact">Contact Me</a>
 			</section>
 
 			<!-- About -->
-			<section id="about">
-				<h2>About me</h2>
-				<p>
+			<section id="about" class="section">
+				<h2 class="title">About me</h2>
+				<p class="description">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, ducimus.
 					Culpa, consequuntur sapiente eos reiciendis laudantium officia aliquam
 					dolore, facilis perferendis animi molestias eaque dolor accusantium
@@ -102,10 +116,10 @@
 			</section>
 
 			<!-- Skills -->
-			<section id="skills">
-				<h2>My Skills</h2>
-				<p>Skills Attributes</p>
-				<p>
+			<section id="skills" class="section">
+				<h2 class="title">My Skills</h2>
+				<p class="description">Skills Attributes</p>
+				<p class="description">
 					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti
 					ratione nulla commodi laudantium! Repellat, soluta officiis beatae
 					quidem, quas totam alias a velit veniam magnam molestias adipisci
@@ -163,9 +177,9 @@
 			</section>
 
 			<!-- Work -->
-			<section id="work">
-				<h2>My work</h2>
-				<p>Projects</p>
+			<section id="work" class="section">
+				<h2 class="title">My work</h2>
+				<p class="description">Projects</p>
 				<ul>
 					<li>
 						<button>All <span>8</span></button>
@@ -257,14 +271,14 @@
 			</section>
 
 			<!-- Testimonials -->
-			<section id="testimonial">
-				<h2>Testimonials</h2>
-				<p>See what they say about me</p>
+			<section id="testimonial" class="section">
+				<h2 class="title">Testimonials</h2>
+				<p class="description">See what they say about me</p>
 				<ul>
 					<li>
 						<img src="images/testimonials/people1.webp" alt="people1" />
 						<div>
-							<p>
+							<p class="description">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
 								perferendis, ratione quia magnam vero voluptate quidem ipsam
 								aliquam reprehenderit neque dolore perspiciatis, blanditiis
@@ -276,7 +290,7 @@
 					<li>
 						<img src="images/testimonials/people2.webp" alt="people2" />
 						<div>
-							<p>
+							<p class="description">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
 								perferendis, ratione quia magnam vero voluptate quidem ipsam
 								aliquam reprehenderit neque dolore perspiciatis, blanditiis
@@ -288,7 +302,7 @@
 					<li>
 						<img src="images/testimonials/people3.webp" alt="people3" />
 						<div>
-							<p>
+							<p class="description">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
 								perferendis, ratione quia magnam vero voluptate quidem ipsam
 								aliquam reprehenderit neque dolore perspiciatis, blanditiis
@@ -310,9 +324,9 @@
 
 		<!-- footer -->
 
-		<footer id="contact">
+		<footer id="contact" class="section">
 			<h2>Let&#39;s talk</h2>
-			<p>apex737@naver.com</p>
+			<p class="description">apex737@naver.com</p>
 			<ul>
 				<li>
 					<a
