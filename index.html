@@ -41,7 +41,7 @@
 
 				<h1><a href="#">Ethan</a></h1>
 			</div>
-			<nav>
+			<nav class="header__nav">
 				<ul class="header__menu">
 					<li><a class="header__menu__item active" href="#home">Home</a></li>
 					<li><a class="header__menu__item" href="#about">About</a></li>
@@ -58,7 +58,7 @@
 		<!-- Main -->
 
 		<main>
-			<!-- Home  -->
+			<!-- Home -->
 
 			<section id="home" class="section">
 				<img
@@ -89,20 +89,20 @@
 					<li class="major">
 						<i class="fa-brands fa-html5 major__icon"></i>
 						<h3 class="major__title">Front-end</h3>
-						<p class="major__description">HCJT, React, Next</p>
+						<p>HCJT, React, Next</p>
 					</li>
 					<li class="major">
 						<i class="fa-solid fa-mobile major__icon"></i>
 						<h3 class="major__title">Mobile</h3>
-						<p class="major__description">Kotlin, Swift, ReactNative</p>
+						<p>Kotlin, Swift, Flutter</p>
 					</li>
 					<li class="major">
 						<i class="fa-solid fa-server major__icon"></i>
 						<h3 class="major__title">Back-end</h3>
-						<p class="major__description">NodeJS, NestJS, Python, MongoDB</p>
+						<p>NodeJS, NestJS, Python</p>
 					</li>
 				</ul>
-				<ul class="jobs">
+				<ul>
 					<li class="job">
 						<img class="job__img" src="images/khu.png" alt="KHU" />
 						<p class="job__period">2022 mar - 2026</p>
@@ -396,7 +396,7 @@
 			</section>
 
 			<!-- Arrow up -->
-			<aside>
+			<aside class="arrow">
 				<a href="#home" title="back-to-top">
 					<i class="fa-solid fa-arrow-up"></i>
 				</a>
@@ -406,24 +406,27 @@
 		<!-- footer -->
 
 		<footer id="contact" class="section">
-			<h2>Let&#39;s talk</h2>
-			<p class="description">apex737@naver.com</p>
-			<ul>
-				<li>
-					<a
-						href="https://github.com/apex737"
-						target="_blank"
-						title="My github">
-						<i class="fa-brands fa-github"></i>
-					</a>
-				</li>
-				<li>
-					<a href="#" target="_blank" title="My instagram">
-						<i class="fa-brands fa-instagram"></i>
-					</a>
-				</li>
-			</ul>
-			<p>@Indi Hacker Ethan - All right reserved</p>
+			<div class="max-container">
+				<h2>Let&#39;s talk</h2>
+				<p class="description">apex737@naver.com</p>
+				<ul class="icons">
+					<li>
+						<a
+							href="https://github.com/apex737"
+							target="_blank"
+							title="My github"
+							class="icon">
+							<i class="fa-brands fa-github"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank" title="My instagram" class="icon">
+							<i class="fa-brands fa-instagram"></i>
+						</a>
+					</li>
+				</ul>
+				<p style="font-size: 0.7rem">@Indi Hacker Ethan - All right reserved</p>
+			</div>
 		</footer>
 	</body>
 </html>
