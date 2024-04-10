@@ -1,0 +1,14 @@
+# BoxHeight을 가져오기
+header.offsetHeight
+header.getBoundingClientRect().height
+: 성능적으로도 기능적으로도 offsetHeight보다 우월함
+
+# 스크롤 위치를 인식하여 애니메이션 추가하기
+classList는 add,remove는 정적이라 동적 애니메이션을 핸들링하기 어렵다.
+
+@keyframes를 이용하여 0%일때 opacity: 1, 100%일때 opacity: 0으로 만든다.
+n%에서 n을 BoxHeight으로 맞춘다
+
+opacity 자체를 동적인 변수로 정의한다.
+opacity = 1 - window.scrollY  / homegetBoundingClientRect().height 로 하면 두 값이 같아질 때 blur된다.
+opacity를 home에 set한다.

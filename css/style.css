@@ -86,12 +86,17 @@ button:focus {
 	width: 100%;
 	top: 0px;
 	padding: 1rem;
-	background-color: #1b1e26;
+	background-color: transparent;
 	color: var(--color-text);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	z-index: 1;
+}
+
+.header--dark {
+	background-color: var(--color-primary);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .header__logo {
@@ -130,7 +135,8 @@ button:focus {
 	color: var(--color-white);
 	text-align: center;
 	padding: 6rem;
-	/* will-change: opacity; */
+	will-change: opacity;
+	transition: opacity 0.5s ease-in;
 }
 
 .home__img {
@@ -138,7 +144,7 @@ button:focus {
 	height: 250px;
 	border: 2px solid var(--color-accent);
 	border-radius: 100%;
-	margin-bottom: 2rem;
+	margin: 0.3rem 0 2rem 0;
 }
 
 .home__title {
