@@ -31,8 +31,9 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" /> -->
 		<!-- JS -->
-		<script src="src/main.js" defer></script>
-	</head>
+		<script type="module" src="src/main.js" defer></script>
+		<script type="module" src="src/projects.js" defer></script>
+		<script type="module" src="src/intersection.js" defer></script>
 	<body>
 		<!-- header -->
 		<header class="header">
@@ -40,6 +41,9 @@
 				<img class="header__logo__img" src="images/profile.png" alt="logo" />
 
 				<h1><a href="#">Ethan</a></h1>
+			</div>
+			<div class="header__dropdown" aria-label="dropdown menu">
+				<i class="fa-solid fa-bars"></i>
 			</div>
 			<nav class="header__nav">
 				<ul class="header__menu">
@@ -209,28 +213,28 @@
 				<p class="description"><strong>Projects</strong></p>
 				<ul class="categories">
 					<li>
-						<button class="category">
+						<button class="category" data-category="all">
 							All <span class="category__nav">8</span>
 						</button>
 					</li>
 					<li>
-						<button class="category">
-							Front-end <span class="category__nav">3</span>
+						<button class="category" data-category="front">
+							Front-end <span class="category__nav">4</span>
 						</button>
 					</li>
 					<li>
-						<button class="category">
+						<button class="category" data-category="back">
 							Back-end <span class="category__nav">3</span>
 						</button>
 					</li>
 					<li>
-						<button class="category">
-							Mobile <span class="category__nav">2</span>
+						<button class="category" data-category="mob">
+							Mobile <span class="category__nav">1</span>
 						</button>
 					</li>
 				</ul>
 				<ul class="projects max-container">
-					<li class="project">
+					<li class="project" data-category="front">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project1.webp"
@@ -242,7 +246,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="front">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project2.webp"
@@ -254,8 +258,8 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
-						<a href="#" target="_blank">
+					<li class="project" data-category="front">
+						<a href="#" target="_blank ">
 							<img
 								src="images/projects/project3.webp"
 								alt="project3"
@@ -266,7 +270,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="front">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project4.webp"
@@ -278,7 +282,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="back">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project5.webp"
@@ -290,7 +294,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="back">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project6.webp"
@@ -302,7 +306,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="back">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project7.webp"
@@ -314,7 +318,7 @@
 							</div>
 						</a>
 					</li>
-					<li class="project">
+					<li class="project" data-category="mob">
 						<a href="#" target="_blank">
 							<img
 								src="images/projects/project8.webp"

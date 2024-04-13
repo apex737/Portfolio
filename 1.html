@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Intersection Observer 예제</title>
+		<style>
+			body {
+				height: 200vh;
+			}
+			#target {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 400px; /* 시작 위치를 조정하기 위해 */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="target"></div>
+
+		<script>
+			// Intersection Observer 생성
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					// 타겟 요소가 화면에 들어오면 실행
+					if (entry.isIntersecting) {
+						console.log('타겟이 화면에 나타났습니다!');
+						// 여기에 추가적인 동작을 추가할 수 있습니다.
+						// 예를 들어, 클래스 추가, 애니메이션 실행 등.
+						entry.target.style.backgroundColor = 'green'; // 타겟 요소의 배경색을 초록색으로 변경
+					} else {
+						console.log('타겟이 화면에서 사라졌습니다!');
+						// 타겟이 화면에서 사라지면 원래의 스타일로 복구할 수 있습니다.
+						entry.target.style.backgroundColor = 'red';
+					}
+				});
+			});
+
+			// 관찰할 요소 선택
+			const target = document.querySelector('#target');
+			// Intersection Observer에 요소 등록
+			observer.observe(target);
+		</script>
+	</body>
+</html>
