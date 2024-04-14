@@ -1,0 +1,62 @@
+# Intersection Observer API로 스크롤에 반응하기
+-> const observer = new IntersectionObserver (callback, option)
+
+<1> observer
+: IntersectionObserver 인스턴스; 관찰을 중단하거나 시작
+: observer.observe( 감시할 Node )
+
+<2> callback
+A. entries
+: IntersectionObserverEntry 객체의 배열
+: 각 entry는 하나의 관찰된 요소에 대한 정보를 담고 있는 객체
+
+B. entry 객체 정보
+entry.target: 관찰된 요소를 나타내는 DOM 요소
+entry.intersectionRatio: 관찰된 요소가 intersect하는 비율; 0에서 1 사이의 값
+entry.isIntersecting: 관찰된 요소가 현재 intersect하는지 여부를 나타내는 불리언 값
+
+<3> option = {
+  A. threshold
+  : isIntersecting을 판단할 intersectionRatio 기준을 지정 (기본값 0 )
+  : Intersect를 판단할 지점을 배열로 지정 
+  ex. [0, 0.5. 0.8]
+  : target의 0%, 50%, 80% 만큼 intersect 될 때마다 callback을 호출
+
+  B. rootMargin: Intersect Container의 크기를 확대/축소
+  C. root: Intersect Container를 지정 (기본값: null (뷰포트))
+}
+
+## 솔루션
+1. sectionIds 배열을 만들고 mapping; sections, navItems
+운 좋게 class가 section인게 있어서 querySelectorAll을 쓸 수 있었다; 
+그렇지 않은 경우의 대안이 mapping이다..!
+
+2. Intersection 어그로 핑퐁
+home 섹션처럼 스크롤시 --dark 효과를 주면 rootMargin과 threshold만으로 커버 가능
+그러나, 정밀한 반응형 페이지를 만들기에는 확실히 부족하고 너무 제멋대로임;
+
+A. 다수의 섹션이 보여지는 경우, Intersecting의 주체로 첫번째 섹션을 선택
+-> 위에 있는 섹션이 전부 없어져야 Intersect 판정을 내릴 것임
+if (entry.isIntersecting === true인 섹션이 1개 이상 ) {
+  첫번째 섹션을 선택
+  threshold: 1
+}
+B. 마지막 섹션이 보여지는 경우, Intersecting의 주체로 마지막 섹션을 선택
+if (마지막 섹션 (entry.isIntersecting === true)) {
+  마지막 섹션을 선택
+  threshold: 0.5
+}
+
+따라서, 현재 섹션이 보여지는지 여부를 판단하는 Boolean이 필요함
+entry.target은 현재 보여지는 섹션임.
+entry.isIntersecting이 True/False
+
+----------------------------------------------------------------------
+<내 생각>
+방법1: Intersect 판정이 난 section만 담은 배열을 생성 (filter)
+
+root: intersectingSectionsArray[0].target (보여지는 요소 중 첫번째)
+root: intersectingSectionsArray[-1].target (보여지는 요소 중 마지막)
+
+방법2: sections
+ 

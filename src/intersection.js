@@ -30,7 +30,8 @@ const observer = new IntersectionObserver(
 		});
 	},
 	{
-		threshold: 0.9,
+		threshold: 1,
+		// rootMargin: '60px',
 	}
 );
 
