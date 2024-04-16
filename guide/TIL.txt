@@ -19,3 +19,5 @@
 2. Grid 핸들링에 익숙해지기
 3. 배열의 iterable 메서드에 익숙해지기
 4. ternary 사용에 익숙해지기
+
+item의 

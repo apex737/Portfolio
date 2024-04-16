@@ -16,17 +16,6 @@ const navItems = sectionIds.map(
 	) => document.querySelector(`[href="${id}"]`)
 );
 
-navItems.forEach((navItem) => {
-	navItem.addEventListener('click', (event) => {
-		event.preventDefault();
-		const target = navItem.getAttribute('href');
-		const targetSection = document.querySelector(target);
-		targetSection.scrollIntoView({
-			behavior: 'smooth',
-		});
-	});
-});
-
 let activeNavItem = navItems[0];
 // 섹션의 visibility에 대한 boolean을 배열에 mapping (sections, navItems의 index와 일치시키기 위함)
 const isVisible = sectionIds.map(() => false); // 모든 섹션의 visibility의 default를 false로 지정
