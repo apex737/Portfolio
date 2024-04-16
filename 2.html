@@ -49,12 +49,17 @@
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
+						console.log(entry.isIntersecting);
 						if (entry.isIntersecting) {
-							console.log(entry.target.textContent);
+							// entry.target의 출현을 감시
+							console.log(entry.target);
 							console.log(entry.intersectionRatio);
-							entry.target.classList.add('active');
+							// entry.target.classList.add('active');
 						} else {
-							entry.target.classList.remove('active');
+							// entry.target의 소멸을 감시
+							console.log(entry.target);
+							console.log(entry.intersectionRatio);
+							// entry.target.classList.remove('active');
 						}
 					});
 				},

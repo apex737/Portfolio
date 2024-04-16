@@ -1,6 +1,7 @@
 'use strict';
 
 const items = document.querySelectorAll('.header__menu__item');
+
 items.forEach((item) => {
 	item.addEventListener('click', (event) => {
 		event.preventDefault();
@@ -30,7 +31,7 @@ const observer = new IntersectionObserver(
 		});
 	},
 	{
-		threshold: 1,
+		threshold: 0.9,
 		// rootMargin: '60px',
 	}
 );

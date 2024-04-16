@@ -2,61 +2,93 @@
 -> const observer = new IntersectionObserver (callback, option)
 
 <1> observer
-: IntersectionObserver 인스턴스; 관찰을 중단하거나 시작
+: IntersectionObserver 클래스의 인스턴스; 관찰을 중단하거나 시작
 : observer.observe( 감시할 Node )
 
 <2> callback
 A. entries
-: IntersectionObserverEntry 객체의 배열
-: 각 entry는 하나의 관찰된 요소에 대한 정보를 담고 있는 객체
+: IntersectionObserverEntry 객체의 배열 
+: 각 entry는 하나의 관찰된 Target 요소에 대한 정보를 담고 있는 객체
+: Target 요소들이 출현/소멸될 때마다 새롭게 정의된다
 
 B. entry 객체 정보
 entry.target: 관찰된 요소를 나타내는 DOM 요소
 entry.intersectionRatio: 관찰된 요소가 intersect하는 비율; 0에서 1 사이의 값
-entry.isIntersecting: 관찰된 요소가 현재 intersect하는지 여부를 나타내는 불리언 값
+entry.isIntersecting: 관찰된 요소가 뷰포트에 보이는지 나타내는 불리언 값 (True: 보임, False: 안보임)
 
 <3> option = {
   A. threshold
-  : isIntersecting을 판단할 intersectionRatio 기준을 지정 (기본값 0 )
-  : Intersect를 판단할 지점을 배열로 지정 
+  : 콜백을 호출할 빈도와 intersectionRatio 기준을 배열로 지정 
   ex. [0, 0.5. 0.8]
-  : target의 0%, 50%, 80% 만큼 intersect 될 때마다 callback을 호출
+  : target이 0%, 50%, 80% 만큼 intersect 될 때마다 callback을 호출
 
   B. rootMargin: Intersect Container의 크기를 확대/축소
   C. root: Intersect Container를 지정 (기본값: null (뷰포트))
 }
 
+
 ## 솔루션
-1. sectionIds 배열을 만들고 mapping; sections, navItems
-운 좋게 class가 section인게 있어서 querySelectorAll을 쓸 수 있었다; 
-그렇지 않은 경우의 대안이 mapping이다..!
+1. <주문>
+마지막 섹션이 보여지는 경우 마지막을, 그 외의 경우 첫번째를 선택 (감지)
+선택한 섹션이 없어지면 다음 navItem으로 active 효과 옮기기 (반응)
+navItem을 클릭하면 smooth하게 이동 (반응)
 
-2. Intersection 어그로 핑퐁
-home 섹션처럼 스크롤시 --dark 효과를 주면 rootMargin과 threshold만으로 커버 가능
-그러나, 정밀한 반응형 페이지를 만들기에는 확실히 부족하고 너무 제멋대로임;
 
-A. 다수의 섹션이 보여지는 경우, Intersecting의 주체로 첫번째 섹션을 선택
--> 위에 있는 섹션이 전부 없어져야 Intersect 판정을 내릴 것임
-if (entry.isIntersecting === true인 섹션이 1개 이상 ) {
-  첫번째 섹션을 선택
-  threshold: 1
+2. <구현1: 반응>
+선택한 섹션이 없어지면 다음 navItem으로 active 효과 옮기기 (반응)
+> navItem은 순서가 있다 
+- navItems라는 배열이 필요하다 -> sectionIds 배열 생성
+- const navItem = navItems[navIndex]; 
+- navIndex는 intersection 이벤트가 발생할 때 갱신된다 (콜백)
+
+> activeNavItem.classList.remove('active')
+> activeNavItem = navItem
+> activeNavItem.classList.add('active')
+
+navItems.forEach(navItem => {
+ navItem.addEventListener('click', () => {
+  const target = navItem.getAttribute('href')
+  const targetSection = document.querySelector('target')
+  target.scrollIntoView({
+    behavior: 'smooth',
+  })
+})
+})
+
+
+3. <구현2: 감지> // 지정, 선택은 Indexing이다
+마지막 섹션이 보여지는 경우 마지막을, 그 외의 경우 첫번째를 선택 (감지) 
+isLastVisible이 True이면 마지막 index를, False이면 보이는것 중 첫번째 index를 반환 (Ternary)
+- const navIndex = isLastVisible ? sectionIds.length - 1 : isVisible.indexOf(true) => 예외처리: 반환값이 -1인 경우
+> intersection 콜백 정의
+; function callback(entries) {
+	entries.forEach((entry) => {
+
+  })
 }
-B. 마지막 섹션이 보여지는 경우, Intersecting의 주체로 마지막 섹션을 선택
-if (마지막 섹션 (entry.isIntersecting === true)) {
-  마지막 섹션을 선택
-  threshold: 0.5
-}
 
-따라서, 현재 섹션이 보여지는지 여부를 판단하는 Boolean이 필요함
-entry.target은 현재 보여지는 섹션임.
-entry.isIntersecting이 True/False
+; sections.forEach(section => {
+  observer.observe(section)
+})
+
+> isVisible, isLastVisible 정의
+const isVisible = sectionIds.map(() => false); 
+const index = sectionIds.indexOf(`#${entry.target.id}`);
+isVisible[index] = entry.isIntersecting; 
+
+isLastVisible =
+index === sectionIds.length - 1 (마지막 섹션이면서) &&
+entry.isIntersecting (뷰포트에 보여지는데) &&
+entry.intersectionRatio > 0.99 (99%가 보여지는 경우)
+
+
+4. <문제/해결>
+> 섹션들의 Intersection 전환이 너무 늦음 ->  rootMargin: top 적용
+> Contact 섹션의 경우, 진입했을 때만 콜백이 호출됨 -> threshold: [0, 1] 2회 호출
 
 ----------------------------------------------------------------------
 <내 생각>
-방법1: Intersect 판정이 난 section만 담은 배열을 생성 (filter)
+화면에 보여지는 section만 담은 배열을 생성
+: entry.target이 section인 배열 생성
 
-root: intersectingSectionsArray[0].target (보여지는 요소 중 첫번째)
-root: intersectingSectionsArray[-1].target (보여지는 요소 중 마지막)
 
-방법2: sections
- 
