@@ -86,9 +86,5 @@ entry.intersectionRatio > 0.99 (99%가 보여지는 경우)
 > 섹션들의 Intersection 전환이 너무 늦음 ->  rootMargin: top 적용
 > Contact 섹션의 경우, 진입했을 때만 콜백이 호출됨 -> threshold: [0, 1] 2회 호출
 
-----------------------------------------------------------------------
-<내 생각>
-화면에 보여지는 section만 담은 배열을 생성
-: entry.target이 section인 배열 생성
 
 

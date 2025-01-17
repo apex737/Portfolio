@@ -1,9 +1,9 @@
-# BoxHeight을 가져오기
+# header--dark
 header.offsetHeight
 header.getBoundingClientRect().height
 : 성능적으로도 기능적으로도 offsetHeight보다 우월함
 
-# 스크롤 위치를 인식하여 애니메이션 추가하기 (연속적 속성 정의)
+# home 화면 투명하게 (연속적 속성 정의)
 classList 토글은 정적이라 연속적인 애니메이션을 핸들링하기 어렵다.
 따라서, opacity (style) 자체를 변수로 정의한다.
 opacity = 1 - window.scrollY  / home.getBoundingClientRect().height 로 하면 두 값이 같아질 때 0이 된다.
@@ -11,7 +11,7 @@ opacity = 1 - window.scrollY  / home.getBoundingClientRect().height 로 하면 �
 ## 문제: opacity < 0 부터의 계산은 불필요하다.
 ## 해결: Math.max(opacity, 0) 처리를 해준다.
 
-# 반응형 탭 만들기
+# 모바일 탭 만들기
 1) icon width에 따라 반응형 보이기 (mediaQuery)
 2) icon 토글; display: none (visibility는 레이아웃을 변경함)
 3) scroll 이동이 감지되면 clicked 클래스 없애기 (로컬 getter)
@@ -21,18 +21,6 @@ opacity = 1 - window.scrollY  / home.getBoundingClientRect().height 로 하면 �
 동적인 상태를 잘 반영한다.
 
 # MyWork Grid 필터링
-클릭이벤트 -> 토글 기능을 넣으면 될듯
-버튼 클릭 -> 해당 클래스를 제외하고 display: none , visibility: hidden (부정선택자 :not())
-.project > :not(.front-end) -> 자바스크립트 조건문으로 표현하고싶다..!!
-project 각각에 대하여 (forEach), fe 클래스를 포함하지 않는다면 (contains), visibility: hidden
-문제: visibility: hidden이 누적됨. fe를 클릭했으면 fe만 보이고, be를 클릭했으면 be만 보여야되잖아.
-해결: else 문에서 visibility: visible을 전체적으로 추가
-
-문제: 그리드 아이템이 좌상단에 정렬되지 않음
-해결: gridRow, gridColumn을 수정하면 제어 (..?)
-문제: visibility를 적용하면 이전 템플릿이 보여짐
-해결: display: block, none을 사용
-
 ## 솔루션
 1. 버튼에 data type을 지정하여 필터링
 2. 이벤트 전이를 이용하여 catergories에 이벤트 리스너 달기
